@@ -73,7 +73,7 @@ public class DirectoryTracker
             System.exit(1);
         }
 
-        Integer portValue = (Integer) parser.getOptionValue(port, Integer.valueOf(DEFAULT_TRACKER_PORT));
+        //Integer portValue = (Integer) parser.getOptionValue(port, Integer.valueOf(DEFAULT_TRACKER_PORT));
         String[] otherArgs = parser.getRemainingArgs();
 
         if (otherArgs.length > 1) {

@@ -16,10 +16,12 @@ import org.apache.log4j.BasicConfigurator;
 import com.turn.ttorrent.client.Client;
 import com.turn.ttorrent.client.Client.ClientState;
 import com.turn.ttorrent.client.SharedTorrent;
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.PatternLayout;
 
 public class SimpleClient
 {
-    public static final String DEFAULT_TRACKER_URI = "http://localhost:6969/announce";
+    //public static final String DEFAULT_TRACKER_URI = "http://localhost:6969/announce";
 
     private static void usage(PrintStream s)
     {
@@ -27,14 +29,15 @@ public class SimpleClient
         s.println("Leech and seed this torrent file.");
         s.println();
         s.println("Available options:");
-        s.println(" -h,--help                                 Show this help and exit.");
-        s.println(" -o,--output        DIR                        Output directory for file.");
+        s.println("  -h,--help                  Show this help and exit.");
+        s.println("  -o,--output DIR            Read/write data to directory DIR.");
         s.println();
     }
 
     public static void main(String[] args)
     {
-        BasicConfigurator.configure();
+        BasicConfigurator.configure(new ConsoleAppender(
+                new PatternLayout("%d [%-25t] %-5p: %m%n")));
 
         CmdLineParser parser = new CmdLineParser();
         CmdLineParser.Option help = parser.addBooleanOption('h', "help");
